@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import axiosClient from '../../axios';
-import { Button, Divider, message, Space, Tooltip, Typography } from 'antd';
+import { Button, Divider, message, Space, Switch, Tooltip, Typography } from 'antd';
 import { ReactComponent as StarIcon } from '../../assets/star.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/delete.svg';
 import { ReactComponent as EditOutlined } from '../../assets/edit.svg';
@@ -98,6 +98,16 @@ const Dish = (props) => {
 		}
 	};
 
+	const onToggleDisabledProduct = async (id, disabled) => {
+		try {
+			await axiosClient.put(`/products/disabled/${id}`, { disabled });
+			await fetch();
+			message.success('Thành công');
+		} catch (e) {
+			message.error('Lỗi');
+		}
+	};
+
 	return (
 		<div>
 			<div className="d-flex" style={{ justifyContent: 'space-between' }}>
@@ -164,6 +174,17 @@ const Dish = (props) => {
 										<span style={{ textDecoration: 'line-through' }}>{formatCurrency(product.oldPrice)}</span>
 									</div>
 								</div>
+								<span onClick={e => {
+									e.stopPropagation()
+								}}>
+
+								<Switch
+									checked={!product.disabled}
+									onChange={(checked) => onToggleDisabledProduct(product._id, !product.disabled)}
+
+								/>
+								</span>
+
 								<Tooltip title="Xoá">
 									<Button
 										onClick={(e) => {

@@ -133,7 +133,7 @@ const Coupon = (props) => {
 							<Row style={{}}>
 								<Col span={12}>
 									<div className="d-flex">
-										<img src="/favi.jpeg" style={{ width: 40, height: 40, border: '1px solid #D1D5DA' }} />
+										<img src="http://www.ocngonhaidung.com/admin/favi.jpeg" style={{ width: 40, height: 40, border: '1px solid #D1D5DA' }} />
 										<div className="d-flex column" style={{ flex: 1, alignItems: 'flex-start' }}>
 											<div style={{ marginBottom: 0 }}>
 												<b>{coupon.code}</b>

@@ -19,7 +19,7 @@ const HeaderContent = (props) => {
 				gap: '16px'
 			}}
 		>
-			<img style={{ aspectRatio: '1/1', borderRadius: '50%' }} src="/favi.jpeg" width={36} height={36} />
+			<img style={{ aspectRatio: '1/1', borderRadius: '50%' }} src="http://www.ocngonhaidung.com/admin/favi.jpeg" width={36} height={36} />
 			<div
 				style={{
 					display: 'flex',

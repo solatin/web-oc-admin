@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { useEffect } from 'react';
-import axiosClient from '../../axios';
-import { Button, Col, Divider, message, Row, Space, Tooltip, Typography } from 'antd';
-import { ReactComponent as StarIcon } from '../../assets/star.svg';
+import { Button, Col, Divider, message, Row, Tooltip, Typography } from 'antd';
+import React, { useEffect, useState } from 'react';
 import { ReactComponent as DeleteIcon } from '../../assets/delete.svg';
 import { ReactComponent as EditOutlined } from '../../assets/edit.svg';
-import { formatCurrency } from '../../utils';
+import axiosClient from '../../axios';
 import CouponModal from './CouponModal';
 
-export const getSrc = (path) => `http://localhost:3000/${path}`;
+export const getSrc = (path) => `http://103.57.223.162/${path}`;
 
 const getTypeProps = (type) => {
 	switch (type) {

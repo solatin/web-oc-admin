@@ -1,8 +1,8 @@
 import { Button, Col, Drawer, Form, Input, message, Row, Upload } from 'antd';
 import { useEffect, useState } from 'react';
 import { NumericFormat } from 'react-number-format';
-import { getSrc } from '.';
 import { ReactComponent as PlusOutlined } from '../../assets/plus.svg';
+import { getSrc } from '../Coupon';
 import Loading from '../Loading';
 
 const getBase64 = (img, callback) => {

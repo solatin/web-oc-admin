@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { useEffect } from 'react';
-import axiosClient from '../../axios';
-import { Button, Col, Table, Divider, message, Row, Space, Tooltip, Typography, Popover } from 'antd';
+import { Button, Divider, message, Popover, Table, Tooltip, Typography } from 'antd';
+import React, { useEffect, useState } from 'react';
 import { ReactComponent as EyeIcon } from '../../assets/eye.svg';
 import { ReactComponent as MoreOverIcon } from '../../assets/moreover.svg';
+import axiosClient from '../../axios';
 import { formatCurrency, formatDate } from '../../utils';
 import OrderModal from './OrderModal';
 
-export const getSrc = (path) => `http://localhost:3000/${path}`;
 
 export const STATUS = {
 	pending: { text: 'Chờ duyệt', color: '#4096ff' },
@@ -201,6 +198,7 @@ const Order = (props) => {
 				<Typography.Title level={2} style={{ marginBottom: 0 }}>
 					Đơn đặt hàng
 				</Typography.Title>
+				<Button type="primary" onClick={fetch}>Làm mới</Button>
 			</div>
 
 			<Divider />

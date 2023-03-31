@@ -29,7 +29,7 @@ const HeaderContent = (props) => {
 				}}
 			>
 				<Text style={{fontSize: '14px'}} strong>ỐC NGON HAI DŨNG</Text>
-				<a href='/' style={{ lineHeight: '16px', color: '#F97A3C' }}>
+				<a href='http://www.ocngonhaidung.com/' target="_blank" rel="noopener noreferrer" style={{ lineHeight: '16px', color: '#F97A3C' }}>
 					<svg
 						stroke="currentColor"
 						fill="currentColor"
@@ -47,8 +47,8 @@ const HeaderContent = (props) => {
 					Xem cửa hàng của tôi
 				</a>
 			</div>
-			<Button type="button" style={{ border: '1px solid gray', height: 'auto', margin: '2px', borderRadius: '2px' }} onClick={logout}>
-				Nguyễn Tiến Sĩ [Chủ shop] <br/>  <Text strong>Đăng xuất</Text>
+			<Button type="button" style={{ flexDirection: 'column', border: '1px solid gray', height: 'auto', margin: '2px', borderRadius: '2px' }} onClick={logout}>
+				<span>Nguyễn Tiến Sĩ [Chủ shop]</span> <Text strong>Đăng xuất</Text>
 			</Button>
 		</div>
 	);

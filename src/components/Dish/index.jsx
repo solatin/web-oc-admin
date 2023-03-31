@@ -9,8 +9,7 @@ import { ReactComponent as EditOutlined } from '../../assets/edit.svg';
 import { formatCurrency } from '../../utils';
 import CreateGroupLabelModal from './CreateGroupLabelModal';
 import DishDrawer from './DishDrawer';
-
-export const getSrc = (path) => `http://localhost:3000/${path}`;
+import { getSrc } from '../Coupon';
 
 const Dish = (props) => {
 	const [labelGroups, setLabelGroups] = useState([]);

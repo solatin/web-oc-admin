@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import axiosClient from '../../axios';
-import { Button, Divider, message, Space, Switch, Tooltip, Typography } from 'antd';
+import { Button, Divider, message, Popconfirm, Space, Switch, Tooltip, Typography } from 'antd';
 import { ReactComponent as StarIcon } from '../../assets/star.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/delete.svg';
 import { ReactComponent as EditOutlined } from '../../assets/edit.svg';
@@ -133,6 +133,10 @@ const Dish = (props) => {
 							<span style={{ marginBottom: 0, fontWeight: '600', fontSize: '20px' }}>{labelGroup.name}</span>
 							<span style={{ marginLeft: 4, opacity: 0.7, fontSize: 12 }}>{`(Ưu tiên: ${labelGroup.priority})`}</span>
 						</span>
+						<Switch
+							defaultChecked={!labelGroup.disabled}
+							onChange={(checked) => onUpdateGroupLabel({ disabled: !checked }, labelGroup._id, )}
+						/>
 						<Tooltip title="Chỉnh sửa">
 							<Button
 								type="text"
@@ -143,15 +147,19 @@ const Dish = (props) => {
 							></Button>
 						</Tooltip>
 
-						<Tooltip title="Xoá">
-							<Button
-								type="text"
-								icon={<DeleteIcon />}
-								onClick={() => {
-									onDeleteGroupLabel(labelGroup._id);
-								}}
-							></Button>
-						</Tooltip>
+						<Popconfirm
+							title="Xoá danh mục?"
+							onConfirm={(e) => {
+								onDeleteGroupLabel(labelGroup._id);
+							}}
+							placement="left"
+							okText="Xoá"
+							cancelText="Huỷ"
+						>
+							<Tooltip title="Xoá">
+								<Button type="text" icon={<DeleteIcon />}></Button>
+							</Tooltip>
+						</Popconfirm>
 					</div>
 					<div style={{ width: '100%' }}>
 						{labelGroup.productIds.map((product) => (
@@ -174,30 +182,41 @@ const Dish = (props) => {
 										<span style={{ textDecoration: 'line-through' }}>{formatCurrency(product.oldPrice)}</span>
 									</div>
 								</div>
-								<span onClick={e => {
-									e.stopPropagation()
-								}}>
-
-								<Switch
-									checked={!product.disabled}
-									onChange={(checked) => onToggleDisabledProduct(product._id, !product.disabled)}
-
-								/>
+								<span
+									onClick={(e) => {
+										e.stopPropagation();
+									}}
+								>
+									<Switch
+										defaultChecked={!product.disabled}
+										onChange={(checked) => onToggleDisabledProduct(product._id, !checked)}
+									/>
 								</span>
 
-								<Tooltip title="Xoá">
-									<Button
-										onClick={(e) => {
-											e.preventDefault();
-											e.stopPropagation();
-											onDeleteProduct(product._id);
-										}}
-										icon={<DeleteIcon />}
-										type="text"
-										size="large"
-										style={{ marginLeft: 8 }}
-									></Button>
-								</Tooltip>
+								<Popconfirm
+									title="Xoá sản phẩm?"
+									// description="Bạn chắc chắn muốn xoá sản phẩm"
+									onConfirm={(e) => {
+										e.preventDefault();
+										e.stopPropagation();
+										onDeleteProduct(product._id);
+									}}
+									onCancel={(e) => {
+										e.preventDefault();
+										e.stopPropagation();
+									}}
+									onClick={(e) => {
+										e.preventDefault();
+										e.stopPropagation();
+									}}
+									placement="left"
+									okText="Xoá"
+									cancelText="Huỷ"
+								>
+									<Tooltip title="Xoá">
+										<Button icon={<DeleteIcon />} type="text" size="large" style={{ marginLeft: 8 }}></Button>
+									</Tooltip>
+								</Popconfirm>
 							</div>
 						))}
 					</div>

@@ -1,4 +1,3 @@
-import { Layout } from 'antd';
 import { default as React } from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
 import './App.css';
@@ -7,7 +6,7 @@ import Dish from './components/Dish';
 import Home from './components/Home';
 import Login from './components/Login';
 import Order from './components/Order/index';
-
+import './firebase'
 
 const App = () => {
 	const routing = useRoutes([
@@ -25,15 +24,27 @@ const App = () => {
 				},
 				{
 					path: 'dishes',
-					element: <div><Dish /></div>
+					element: (
+						<div>
+							<Dish />
+						</div>
+					)
 				},
 				{
 					path: 'coupons',
-					element: <div><Coupon /></div>
+					element: (
+						<div>
+							<Coupon />
+						</div>
+					)
 				},
 				{
 					path: 'orders',
-					element: <div><Order /></div>
+					element: (
+						<div>
+							<Order />
+						</div>
+					)
 				}
 			]
 		},
@@ -42,6 +53,7 @@ const App = () => {
 			element: <Navigate to="/app" />
 		}
 	]);
+
 
 	return routing;
 };

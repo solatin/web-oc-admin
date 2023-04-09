@@ -44,6 +44,7 @@ const DishDrawer = ({ groupLabelId, setGroupLabelId, onCreateProduct, product, s
 		});
 		return false;
 	};
+
 	const uploadButton = (
 		<div>
 			{loading ? <Loading /> : <PlusOutlined />}

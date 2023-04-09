@@ -163,3 +163,7 @@
 .ant-popconfirm-buttons {
   display: flex;
 }
+
+.ant-upload-select {
+  margin: 0 !important
+}

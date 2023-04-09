@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Order from './components/Order/index';
 import './firebase'
+import LayoutSettings from './components/LayoutSetting';
 
 const App = () => {
 	const routing = useRoutes([
@@ -43,6 +44,14 @@ const App = () => {
 					element: (
 						<div>
 							<Order />
+						</div>
+					)
+				},
+				{
+					path: 'layout-settings',
+					element: (
+						<div>
+							<LayoutSettings />
 						</div>
 					)
 				}

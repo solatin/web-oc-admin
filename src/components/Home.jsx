@@ -1,8 +1,8 @@
 import { Layout } from 'antd';
 import { default as React, useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import HeaderContent from './Header';
-import SiderContent from './Sider';
+import SiderContent from './SiderContent';
 import { getMessagingToken } from '../firebase';
 import axiosClient from '../axios';
 

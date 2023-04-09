@@ -5,7 +5,7 @@ import { ReactComponent as EditOutlined } from '../../assets/edit.svg';
 import axiosClient from '../../axios';
 import CouponModal from './CouponModal';
 
-export const getSrc = (path) => `http://103.57.223.162/${path}`;
+export const getSrc = (path) => `${import.meta.env.VITE_BASE_URL}/${path}`;
 
 const getTypeProps = (type) => {
 	switch (type) {

@@ -19,7 +19,7 @@ const HeaderContent = (props) => {
 				gap: '16px'
 			}}
 		>
-			<img style={{ aspectRatio: '1/1', borderRadius: '50%' }} src="http://www.ocngonhaidung.com/admin/favi.jpeg" width={36} height={36} />
+			<img style={{ aspectRatio: '1/1', borderRadius: '50%' }} src="https://www.ocngonhaidung.com:8443/favi.jpeg" width={36} height={36} />
 			<div
 				style={{
 					display: 'flex',
@@ -29,7 +29,7 @@ const HeaderContent = (props) => {
 				}}
 			>
 				<Text style={{fontSize: '14px'}} strong>ỐC NGON HAI DŨNG</Text>
-				<a href='http://www.ocngonhaidung.com/' target="_blank" rel="noopener noreferrer" style={{ lineHeight: '16px', color: '#F97A3C' }}>
+				<a href='https://www.ocngonhaidung.com/' target="_blank" rel="noopener noreferrer" style={{ lineHeight: '16px', color: '#F97A3C' }}>
 					<svg
 						stroke="currentColor"
 						fill="currentColor"

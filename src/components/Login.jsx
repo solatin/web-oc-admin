@@ -27,7 +27,7 @@ const Login = () => {
 			style={{
 				width: '100vw',
 				height: '100vh',
-				backgroundImage: 'url("http://www.ocngonhaidung.com/admin/login-background.png")',
+				backgroundImage: 'url("https://www.ocngonhaidung.com:8443/login-background.png")',
 				backgroundRepeat: 'no-repeat',
 				backgroundSize: 'cover',
 				display: 'flex',

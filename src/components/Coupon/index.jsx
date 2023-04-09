@@ -5,7 +5,7 @@ import { ReactComponent as EditOutlined } from '../../assets/edit.svg';
 import axiosClient from '../../axios';
 import CouponModal from './CouponModal';
 
-export const getSrc = (path) => `http://103.57.223.162/${path}`;
+export const getSrc = (path) => `https://www.ocngonhaidung.com/${path}`;
 
 const getTypeProps = (type) => {
 	switch (type) {
@@ -133,7 +133,7 @@ const Coupon = (props) => {
 							<Row style={{}}>
 								<Col span={12}>
 									<div className="d-flex">
-										<img src="http://www.ocngonhaidung.com/admin/favi.jpeg" style={{ width: 40, height: 40, border: '1px solid #D1D5DA' }} />
+										<img src="https://www.ocngonhaidung.com:8443/favi.jpeg" style={{ width: 40, height: 40, border: '1px solid #D1D5DA' }} />
 										<div className="d-flex column" style={{ flex: 1, alignItems: 'flex-start' }}>
 											<div style={{ marginBottom: 0 }}>
 												<b>{coupon.code}</b>

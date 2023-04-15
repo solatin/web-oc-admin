@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import axiosClient from '../../axios';
-import { Button, Divider, message, Popconfirm, Space, Switch, Tooltip, Typography } from 'antd';
+import { Button, Divider, message, Popconfirm, Rate, Space, Switch, Tooltip, Typography } from 'antd';
 import { ReactComponent as StarIcon } from '../../assets/star.svg';
 import { ReactComponent as DeleteIcon } from '../../assets/delete.svg';
 import { ReactComponent as EditOutlined } from '../../assets/edit.svg';
@@ -135,7 +135,7 @@ const Dish = (props) => {
 						</span>
 						<Switch
 							defaultChecked={!labelGroup.disabled}
-							onChange={(checked) => onUpdateGroupLabel({ disabled: !checked }, labelGroup._id, )}
+							onChange={(checked) => onUpdateGroupLabel({ disabled: !checked }, labelGroup._id)}
 						/>
 						<Tooltip title="Chỉnh sửa">
 							<Button
@@ -167,8 +167,8 @@ const Dish = (props) => {
 								<img src={getSrc(product.imagePath)} width={64} height={64} style={{ objectFit: 'cover' }} />
 								<div className="d-flex" style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
 									<span style={{ fontWeight: 'bold' }}>{product.name}</span>
-									<span className="d-flex gap-1 align-start">
-										5 <StarIcon /> - Đã bán 0
+									<span className="d-flex gap-1 align-start" onClick={e => e.stopPropagation()}>
+										<Rate defaultValue={product.stars} onChange={(stars) => onUpdateProduct({ stars }, product._id)} />
 									</span>
 								</div>
 								<div className="d-flex column align-end" style={{ marginLeft: 'auto' }}>

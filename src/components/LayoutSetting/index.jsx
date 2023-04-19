@@ -20,6 +20,8 @@ import axiosClient from '../../axios';
 
 import Loading from '../Loading';
 import { getSrc } from '../Coupon';
+import { SketchPicker } from 'react-color';
+import ColorPicker from './ColorPicker';
 
 const getBase64 = (img, callback) => {
 	const reader = new FileReader();
@@ -57,7 +59,7 @@ const LayoutSettings = (props) => {
 			setPanelImages(rs.panelImagePaths.map((el) => ({ url: el })));
 			form.setFieldsValue(rs);
 			valuesRef.current = { ...rs, panelImages: rs.panelImagePaths.map((el) => ({ url: el })) };
-			setDisableEdit(true)
+			setDisableEdit(true);
 		} catch (e) {
 			message.error('Lỗi');
 		}
@@ -102,17 +104,23 @@ const LayoutSettings = (props) => {
 	);
 
 	const onFinish = async (data) => {
-		const formData = new FormData()
+		const formData = new FormData();
 
 		Object.entries(data).map(([key, value]) => {
-			formData.append(key, value)
-		})
-		panelImages.filter(el => !el.isNew).forEach(el => {
-			formData.append('panelImagePaths', el.url)
-		})
-		panelImages.filter(el => el.isNew).forEach(el => {
-			formData.append('panelImages', el.file)
-		})
+			formData.append(key, value);
+		});
+		formData.append('shopNameStyle.bold', data.shopNameStyle.bold)
+		formData.append('shopNameStyle.color', data.shopNameStyle.color)
+		panelImages
+			.filter((el) => !el.isNew)
+			.forEach((el) => {
+				formData.append('panelImagePaths', el.url);
+			});
+		panelImages
+			.filter((el) => el.isNew)
+			.forEach((el) => {
+				formData.append('panelImages', el.file);
+			});
 		try {
 			await axiosClient.put(`/layouts`, formData, {
 				headers: {
@@ -154,7 +162,7 @@ const LayoutSettings = (props) => {
 					<Col span={20}>
 						<Row gutter={[36, 24]}>
 							{panelImages.map(({ url, isNew }, index) => (
-								<Col span={4} key={url} >
+								<Col span={4} key={url}>
 									<div style={{ display: 'flex', alignItems: 'center', flexFlow: 'column', gap: 8 }}>
 										<Upload
 											accept="image/png, image/gif, image/jpeg"
@@ -183,7 +191,7 @@ const LayoutSettings = (props) => {
 								</Col>
 							))}
 
-							<Col span={4} style={{display: 'flex', flexDirection: 'column', gap: 4}}>
+							<Col span={4} style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
 								<Upload
 									accept="image/png, image/gif, image/jpeg"
 									name="avatar"
@@ -200,9 +208,35 @@ const LayoutSettings = (props) => {
 					</Col>
 				</Row>
 
-				<Form.Item name="shopName" label="Tên cửa hàng">
-					<Input />
-				</Form.Item>
+				<Row gutter={16}>
+					<Col span={12}>
+						<Form.Item labelCol={{span: 8}} name="shopName" label="Tên cửa hàng">
+							<Input />
+						</Form.Item>
+					</Col>
+					<Col span={4}>
+						<Form.Item
+							labelCol={{ span: 12 }}
+							wrapperCol={{ span: 12 }}
+							name={['shopNameStyle', 'bold']}
+							label="Chữ đậm"
+							valuePropName="color"
+						>
+							<Switch />
+						</Form.Item>
+					</Col>
+					<Col span={4}>
+						<Form.Item
+							labelCol={{ span: 12, offset: 3 }}
+							wrapperCol={{ span: 12 }}
+							name={['shopNameStyle', 'color']}
+							label="Màu chữ"
+						>
+							<ColorPicker disabled={disableEdit} />
+						</Form.Item>
+					</Col>
+				</Row>
+
 				<Form.Item name="address" label="Địa chỉ">
 					<Input />
 				</Form.Item>

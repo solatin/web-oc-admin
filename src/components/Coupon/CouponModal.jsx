@@ -77,7 +77,6 @@ const CouponModal = ({ onCreate, editingItem, setEditingItem, onUpdate, products
 		}
 	}, [editingItem]);
 
-	console.log(editingItem);
 	const onFinish = (values) => {
 		const formData = new FormData();
 		Object.entries(values).forEach(([key, val]) => {

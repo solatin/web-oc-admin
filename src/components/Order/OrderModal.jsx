@@ -47,7 +47,6 @@ const OrderModal = ({ item, setSelectingOrder }) => {
 			title: 'Giá',
 			dataIndex: ['productId', 'price'],
 			render: (text) => {
-				console.log(text);
 				return formatCurrency(text);
 			}
 		},

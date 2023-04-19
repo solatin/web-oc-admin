@@ -67,6 +67,7 @@ const OrderModal = ({ item, setSelectingOrder }) => {
 				)
 		}
 	];
+
 	const productPrice = item
 		? item.productInfos.reduce((prev, cur) => {
 				return prev + cur.productId.price * cur.amount;

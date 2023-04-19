@@ -2,6 +2,7 @@ import { Button, Col, Divider, message, Row, Tooltip, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { ReactComponent as DeleteIcon } from '../../assets/delete.svg';
 import { ReactComponent as EditOutlined } from '../../assets/edit.svg';
+
 import axiosClient from '../../axios';
 import CouponModal from './CouponModal';
 
@@ -55,9 +56,13 @@ const Coupon = (props) => {
 		fetchProducts();
 	}, []);
 
-	const onCreateCoupon = async (data) => {
+	const onCreateCoupon = async (formData) => {
 		try {
-			await axiosClient.post('/coupons', data);
+			await axiosClient.post('/coupons', formData, {
+				headers: {
+					'Content-Type': 'multipart/form-data'
+				}
+			});
 			await fetch();
 			window.scrollTo(0, document.body.scrollHeight);
 			message.success('Thành công');
@@ -66,9 +71,13 @@ const Coupon = (props) => {
 		}
 	};
 
-	const onUpdateCoupon = async (data, id) => {
+	const onUpdateCoupon = async (formData, id) => {
 		try {
-			await axiosClient.put(`/coupons/${id}`, data);
+			await axiosClient.put(`/coupons/${id}`, formData, {
+				headers: {
+					'Content-Type': 'multipart/form-data'
+				}
+			});
 			await fetch();
 			message.success('Thành công');
 		} catch {
@@ -133,7 +142,10 @@ const Coupon = (props) => {
 							<Row style={{}}>
 								<Col span={12}>
 									<div className="d-flex">
-										<img src={getSrc('public/favi.jpeg')} style={{ width: 40, height: 40, border: '1px solid #D1D5DA' }} />
+										<img
+											src={getSrc(coupon.imagePath || 'public/favi.jpeg')}
+											style={{ width: 40, height: 40, border: '1px solid #D1D5DA' }}
+										/>
 										<div className="d-flex column" style={{ flex: 1, alignItems: 'flex-start' }}>
 											<div style={{ marginBottom: 0 }}>
 												<b>{coupon.code}</b>

@@ -18,6 +18,7 @@ const ColorPicker = ({ value, onChange, disabled }) => {
 		>
 			<div
 				style={{
+					cursor: 'pointer',
 					width: 80,
 					borderRadius: 5,
 					height: 16,

@@ -109,8 +109,8 @@ const LayoutSettings = (props) => {
 		Object.entries(data).map(([key, value]) => {
 			formData.append(key, value);
 		});
-		formData.append('shopNameStyle.bold', data.shopNameStyle.bold)
-		formData.append('shopNameStyle.color', data.shopNameStyle.color)
+		formData.append('shopNameStyle.bold', data.shopNameStyle.bold);
+		formData.append('shopNameStyle.color', data.shopNameStyle.color);
 		panelImages
 			.filter((el) => !el.isNew)
 			.forEach((el) => {
@@ -209,8 +209,13 @@ const LayoutSettings = (props) => {
 				</Row>
 
 				<Row gutter={16}>
+					<Col span={24}>
+						<Form.Item name="pageTitle" label="Tên trang web">
+							<Input />
+						</Form.Item>
+					</Col>
 					<Col span={12}>
-						<Form.Item labelCol={{span: 8}} name="shopName" label="Tên cửa hàng">
+						<Form.Item labelCol={{ span: 8 }} name="shopName" label="Tên cửa hàng">
 							<Input />
 						</Form.Item>
 					</Col>

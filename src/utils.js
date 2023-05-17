@@ -1,4 +1,4 @@
-export const formatCurrency = num => num ? `${num.toLocaleString('de-DE')} ₫` : 0
+export const formatCurrency = num => num ? `${num.toLocaleString('de-DE')}` : 0
 
 export function formatDate(str) {
   if (!str) return ''

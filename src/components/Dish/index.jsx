@@ -172,7 +172,7 @@ const Dish = (props) => {
 									</span>
 								</div>
 								<div className="d-flex column align-end" style={{ marginLeft: 'auto' }}>
-									<span style={{ fontWeight: 'bold' }}>{formatCurrency(product.price)}</span>
+									<span style={{ fontWeight: 'bold' }}>{formatCurrency(product.price)} {product.unit}</span>
 									<div style={{ fontWeight: 'bold' }}>
 										<span
 											style={{ background: '#EF4444', padding: '4px', color: 'white', borderRadius: 2, marginRight: 4 }}

@@ -148,16 +148,29 @@ const DishDrawer = ({ groupLabelId, setGroupLabelId, onCreateProduct, product, s
 					<Form.Item label="Tên sản phẩm" name="name" required rules={[{ required: true }]}>
 						<Input />
 					</Form.Item>
-					<Form.Item
-						label="Giá bán"
-						name="price"
-						trigger="onValueChange"
-						getValueFromEvent={(obj) => obj.floatValue}
-						required
-						rules={[{ required: true }]}
-					>
-						<NumericFormat suffix="đ" customInput={Input} thousandSeparator="," />
-					</Form.Item>
+					<Row gutter={8}>
+						<Col span={16}>
+							<Form.Item
+								label="Giá bán"
+								name="price"
+								trigger="onValueChange"
+								getValueFromEvent={(obj) => obj.floatValue}
+								required
+								rules={[{ required: true }]}
+							>
+								<NumericFormat customInput={Input} thousandSeparator="," />
+							</Form.Item>
+						</Col>
+						<Col span={8}>
+							<Form.Item
+								label="Đơn vị"
+								name="unit"
+							>
+								<Input />
+							</Form.Item>
+						</Col>
+					</Row>
+
 					<Row gutter={8}>
 						<Col span={16}>
 							<Form.Item
@@ -166,7 +179,7 @@ const DishDrawer = ({ groupLabelId, setGroupLabelId, onCreateProduct, product, s
 								trigger="onValueChange"
 								getValueFromEvent={(obj) => obj.floatValue}
 							>
-								<NumericFormat suffix="đ" customInput={Input} thousandSeparator="," />
+								<NumericFormat customInput={Input} thousandSeparator="," />
 							</Form.Item>
 						</Col>
 						<Col span={8}>

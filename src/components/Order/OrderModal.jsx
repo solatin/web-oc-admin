@@ -198,23 +198,23 @@ const OrderModal = ({ item, setSelectingOrder }) => {
 							</>
 						)}
 						<div className="d-flex column" style={{ alignItems: 'flex-end', width: '100%' }}>
-							<div className="d-flex" style={{ justifyContent: 'space-between', width: '40%' }}>
+							<div className="d-flex" style={{ justifyContent: 'space-between', width: '60%' }}>
 								<b>Tiền hàng</b>
 								<span>{formatCurrency(productPrice)}</span>
 							</div>
-							<div className="d-flex" style={{ justifyContent: 'space-between', width: '40%' }}>
+							<div className="d-flex" style={{ justifyContent: 'space-between', width: '60%' }}>
 								<b>Tiền ship</b>
-								<span style={{ fontSize: 14 }}>
-									{item.coupon?.detail?.type === 'freeShip' && item.coupon?.approved ? <i>Miễn phí</i> : 'Tuỳ tính'}
+								<span style={{ fontSize: 14, maxWidth: '70%', textAlign: 'right' }}>
+									{item.coupon?.detail?.type === 'freeShip' && item.coupon?.approved ? <i>Miễn phí</i> : 'Đơn giá trên theo menu ăn tại quán. Phí ship khách trả theo app.'}
 								</span>
 							</div>
 							{item.coupon?.detail?.type === 'discount' && item.coupon?.approved && (
-								<div className="d-flex" style={{ justifyContent: 'space-between', width: '40%' }}>
+								<div className="d-flex" style={{ justifyContent: 'space-between', width: '60%' }}>
 									<b>Giảm khuyến mãi</b>
 									<span style={{ fontSize: 14 }}>-{formatCurrency(item.coupon?.detail?.discountValue)}</span>
 								</div>
 							)}
-							<div className="d-flex" style={{ justifyContent: 'space-between', width: '40%' }}>
+							<div className="d-flex" style={{ justifyContent: 'space-between', width: '60%' }}>
 								<b style={{ fontSize: 18 }}>Tổng tiền</b>
 								<span style={{ fontSize: 14, color: '#ff4d4f', fontWeight: 'bold' }}>{formatCurrency(item.totalPrice)}</span>
 							</div>

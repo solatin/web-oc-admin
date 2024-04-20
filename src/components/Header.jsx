@@ -28,8 +28,8 @@ const HeaderContent = (props) => {
 					alignItems: 'flex-start'
 				}}
 			>
-				<Text style={{fontSize: '14px'}} strong>ỐC NGON HAI DŨNG</Text>
-				<a href='https://www.ocngonhaidung.com/' target="_blank" rel="noopener noreferrer" style={{ lineHeight: '16px', color: '#F97A3C' }}>
+				<Text style={{fontSize: '14px'}} strong>HẢI SẢN ỐC NGON</Text>
+				<a href={`${import.meta.env.VITE_BASE_URL}`} target="_blank" rel="noopener noreferrer" style={{ lineHeight: '16px', color: '#F97A3C' }}>
 					<svg
 						stroke="currentColor"
 						fill="currentColor"

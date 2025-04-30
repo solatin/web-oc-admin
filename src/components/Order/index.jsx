@@ -21,65 +21,19 @@ const onChange = (pagination, filters, sorter, extra) => {
 const Order = (props) => {
 	const [orders, setOrders] = useState([]);
 	const [selectingOrder, setSelectingOrder] = useState(null);
-	const [pagination, setPagination] = useState({
-		current: 1,
-		pageSize: 10,
-		total: 0
-	});
-	const [loading, setLoading] = useState(false);
-	const [filters, setFilters] = useState({});
-	const [sorter, setSorter] = useState({});
 
-	const fetch = async (page = pagination.current, pageSize = pagination.pageSize, newFilters = filters, newSorter = sorter) => {
-		setLoading(true);
+	const fetch = async () => {
 		try {
-			// Convert filters to query params
-			const filterParams = Object.entries(newFilters).reduce((acc, [key, value]) => {
-				if (value) {
-					acc[key] = Array.isArray(value) ? value.join(',') : value;
-				}
-				return acc;
-			}, {});
+			const rs = await axiosClient.get('/orders');
 
-			// Handle single column sorting
-			const sortParams = newSorter?.field && newSorter?.order 
-				? {
-					sortField: newSorter.field,
-					sortOrder: newSorter.order
-				}
-				: {};
-
-			const params = {
-				page,
-				limit: pageSize,
-				...filterParams,
-				...sortParams
-			};
-
-			const { data, total } = await axiosClient.get('/orders', { params });
-
-			setOrders(data.map((el) => ({ ...el, code: `DH${el._id.slice(-5)}` })));
-			setPagination(prev => ({
-				...prev,
-				total
-			}));
+			setOrders(rs.map((el) => ({ ...el, code: `DH${el._id.slice(-5)}` })));
 		} catch (e) {
 			message.error('Lỗi');
-		} finally {
-			setLoading(false);
 		}
 	};
-
 	useEffect(() => {
 		fetch();
 	}, []);
-
-	const handleTableChange = (newPagination, newFilters, newSorter) => {
-		setFilters(newFilters);
-		setSorter(newSorter);
-		fetch(newPagination.current, newPagination.pageSize, newFilters, newSorter);
-		setPagination(newPagination);
-	};
 
 	const onUpdateCoupon = async (data, id) => {
 		try {
@@ -149,6 +103,8 @@ const Order = (props) => {
 				) : (
 					<b>Nhận tại cửa hàng</b>
 				),
+			onFilter: (value, record) => record.shippingMethod === value,
+			sorter: (a, b) => a.shippingMethod.length - b.shippingMethod.length
 		},
 		{
 			title: 'Trạng thái',
@@ -189,18 +145,20 @@ const Order = (props) => {
 					{STATUS[text].text}
 				</span>
 			),
+			onFilter: (value, record) => record.status === value,
+			sorter: (a, b) => a.status.length - b.status.length
 		},
 		{
 			title: 'Thời điểm đặt',
 			dataIndex: 'time',
 			render: (text) => formatDate(text),
-			sorter: true,
+			sorter: (a, b) => Date.parse(a.time) - Date.parse(b.time)
 		},
 		{
 			title: 'Tổng tiền',
 			dataIndex: 'totalPrice',
 			render: formatCurrency,
-			sorter: true,
+			sorter: (a, b) => a.totalPrice - b.totalPrice
 		},
 		{
 			dataIndex: 'action',
@@ -236,29 +194,16 @@ const Order = (props) => {
 
 	return (
 		<div>
-			<div className="d-flex" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
+			<div className="d-flex" style={{ justifyContent: 'space-between' }}>
 				<Typography.Title level={2} style={{ marginBottom: 0 }}>
 					Đơn đặt hàng
 				</Typography.Title>
-				<Button type="primary" onClick={() => fetch()}>Làm mới</Button>
+				<Button type="primary" onClick={fetch}>Làm mới</Button>
 			</div>
 
 			<Divider />
 			<div style={{ border: '1px solid #D1D5DA', borderRadius: '1px' }}>
-				<Table 
-					size="small" 
-					columns={columns} 
-					dataSource={orders} 
-					onChange={handleTableChange}
-					pagination={{
-						...pagination,
-						position: ['topRight', 'bottomRight'],
-						showSizeChanger: true,
-						pageSizeOptions: ['10', '20', '50', '100'],
-						showTotal: (total) => `Tổng ${total} đơn hàng`
-					}}
-					loading={loading}
-				/>
+				<Table size="small" columns={columns} dataSource={orders} onChange={onChange} />
 			</div>
 			<OrderModal item={selectingOrder} setSelectingOrder={setSelectingOrder}/>
 		</div>

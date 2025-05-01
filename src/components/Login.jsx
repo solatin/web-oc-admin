@@ -27,7 +27,7 @@ const Login = () => {
 			style={{
 				width: '100vw',
 				height: '100vh',
-				backgroundImage: `url("${import.meta.env.VITE_BASE_URL}:8443/login-background.png")`,
+				backgroundImage: `url("/login-background.png")`,
 				backgroundRepeat: 'no-repeat',
 				backgroundSize: 'cover',
 				display: 'flex',

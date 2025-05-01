@@ -19,7 +19,7 @@ const HeaderContent = (props) => {
 				gap: '16px'
 			}}
 		>
-			<img style={{ aspectRatio: '1/1', borderRadius: '50%' }} src={`${import.meta.env.VITE_BASE_URL}:8443/favi.jpeg`} width={36} height={36} />
+r			<img style={{ aspectRatio: '1/1', borderRadius: '50%' }} src={`/favi.jpeg`} width={36} height={36} />
 			<div
 				style={{
 					display: 'flex',
@@ -29,7 +29,7 @@ const HeaderContent = (props) => {
 				}}
 			>
 				<Text style={{ fontSize: '14px' }} strong>ỐC NGON HAI DŨNG</Text>
-				<a href={`${import.meta.env.VITE_BASE_URL}`} target="_blank" rel="noopener noreferrer" style={{ lineHeight: '16px', color: '#F97A3C' }}>
+				<a href={`/redirect-menu`} target="_blank" rel="noopener noreferrer" style={{ lineHeight: '16px', color: '#F97A3C' }}>
 					<svg
 						stroke="currentColor"
 						fill="currentColor"

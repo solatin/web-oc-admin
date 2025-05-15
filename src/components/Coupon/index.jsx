@@ -6,7 +6,7 @@ import { ReactComponent as EditOutlined } from '../../assets/edit.svg';
 import axiosClient from '../../axios';
 import CouponModal from './CouponModal';
 
-export const getSrc = (path) => `/${path}`;
+export const getSrc = (path) => `/api/${path}`;
 
 const getTypeProps = (type) => {
 	switch (type) {
